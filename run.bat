@@ -1,0 +1,6 @@
+@echo off
+echo Starting UPHC System Backend...
+start cmd /k "uvicorn api:app --reload"
+timeout /t 3 /nobreak
+echo Starting UPHC System Frontend...
+start cmd /k "streamlit run app.py"

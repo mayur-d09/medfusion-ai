@@ -1,0 +1,42 @@
+# Local databases
+*.db
+health.db
+health_v2.db
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node modules and build files
+node_modules/
+.next/
+dist/
+build/
+out/
+
+# IDE and system files
+.gemini/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temp and log files
+*.log
+.system_generated/
+uploads/
+mongodb_data/

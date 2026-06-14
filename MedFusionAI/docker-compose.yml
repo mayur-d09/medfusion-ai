@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8001:8001"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/medfusion
+      - JWT_SECRET=medfusion-super-secret-key-12345
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-AIzaSyDVy7c_BVzi2C34ICsVL5wOp8zvqPx-U-Q}
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - NEXT_PUBLIC_API_URL=http://localhost:8001
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3000
+    depends_on:
+      - backend
+
+  mongodb:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:

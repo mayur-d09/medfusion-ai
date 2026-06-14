@@ -1,0 +1,6 @@
+@echo off
+echo Starting MedFusion AI FastAPI Backend...
+start cmd /k "cd /d MedFusionAI\backend && python -m uvicorn main:app --port 8001"
+timeout /t 3 /nobreak
+echo Starting MedFusion AI Next.js Frontend...
+start cmd /k "cd /d MedFusionAI\frontend && npm run dev"
