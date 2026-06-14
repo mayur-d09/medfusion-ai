@@ -10,3 +10,9 @@ qrcode
 pillow
 fpdf
 python-multipart
+pymongo
+bcrypt
+PyJWT
+pypdf
+pyzbar
+opencv-python
