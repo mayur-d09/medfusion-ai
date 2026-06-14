@@ -4,8 +4,18 @@ import datetime
 from pymongo import MongoClient
 import bcrypt
 
-# Fetch MongoDB URI from environment variables (Atlas or local)
-MONGODB_URI = os.getenv("MONGODB_URI", os.getenv("MONGO_URI", "mongodb://localhost:27017/"))
+# Fetch MongoDB URI from environment variables
+MONGODB_URI = os.getenv("MONGODB_URI")
+
+if not MONGODB_URI:
+    import sys
+    print("\n" + "="*80, file=sys.stderr)
+    print("FATAL ERROR: MONGODB_URI environment variable is missing!", file=sys.stderr)
+    print("Please set MONGODB_URI in your environment variables to run this application.", file=sys.stderr)
+    print("For local development: set MONGODB_URI='mongodb://localhost:27017/'", file=sys.stderr)
+    print("For production: set MONGODB_URI to your MongoDB Atlas connection string.", file=sys.stderr)
+    print("="*80 + "\n", file=sys.stderr)
+    raise ValueError("MONGODB_URI environment variable is missing.")
 DB_NAME = os.getenv("MONGODB_DB_NAME", "medfusion")
 
 client = MongoClient(MONGODB_URI)
